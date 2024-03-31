@@ -18,5 +18,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Install Dependencies
+        run: npm db:generate
+
       - name: Run Build
         run: npm run build
