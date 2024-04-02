@@ -1,25 +1,33 @@
-name: Build on PR
+# Make sure that this yml file is correctly linted (spaced) else it won't work as expected
 
+name: Build on PR # Just a name
+
+# When should this run defined here
 on:
   pull_request:
     branches:
       - master
 
+# What you want to do
 jobs:
   build:
+    name: Build the project # It is optional
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      # This are copied from the web {all actions/...} -- You can also write all the steps for perticular action instead of actions
+      - uses: actions/checkout@v3 # This action will install node.js on the ubuntu-latest machine (runs-on)
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
-      
+          node-version: "20"
+
       - name: Install Dependencies
         run: npm install
-      
+
+      # // if prisma error then add a new script inside a package.json and init write all the codes ["db:generate":"cd package/db && npx prisma generate && cd ../.."] then add this script in build.yml file <or> directly write this inside build.yml file (not prefered)
+
       - name: Generate prisma client
         run: npm run db:generate
-        
+
       - name: Run Build
         run: npm run build
