@@ -14,7 +14,8 @@ jobs:
     name: Build the project # It is optional
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      # This are copied from the web {all actions/...} -- You can also write all the steps for perticular action instead of actions
+      - uses: actions/checkout@v3 # This action will install node.js on the ubuntu-latest machine (runs-on)
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
