@@ -24,5 +24,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      # // if prisma error then add a new script inside a package.json and init write all the codes ["db:generate":"cd package/db && npx prisma generate && cd ../.."] then add this script in build.yml file <or> directly write this inside build.yml file (not prefered)
+
+      - name: Generate prisma client
+        run: npm run db:generate
+
       - name: Run Build
         run: npm run build

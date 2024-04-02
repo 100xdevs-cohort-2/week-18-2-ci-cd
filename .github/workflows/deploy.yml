@@ -1,0 +1,32 @@
+name: Build and Deploy to Docker Hub
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Repo
+        uses: actions/checkout@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }} # It will come from github secret
+          password: ${{ secrets.DOCKER_PASSWORD }} # It will come from github secret
+
+      - name: Build and Push Docker image
+        # You can totally write this own your own [run:docker build -t image_name ,.etc..]
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./docker/Dockerfile.user
+          # file: ./Dockerfile [[If you use docker file directly then write this]]
+          push: true
+          tags: 100xdevs/web-app:latest # Replace with your Docker Hub username and repository
+
+      - name: Verify Pushed Image
+        run: docker pull 100xdevs/web-app:latest # Replace with your Docker Hub username and repository
