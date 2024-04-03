@@ -26,7 +26,7 @@ export const AddMoney = () => {
             setAmount(Number(value))
         }} />
         <div className="py-4 text-left">
-            Bank
+            Banks
         </div>
         <Select onSelect={(value) => {
             setRedirectUrl(SUPPORTED_BANKS.find(x => x.name === value)?.redirectUrl || "")
