@@ -1,4 +1,4 @@
-import React from "react";
+
 
 export function Card({
   title,
@@ -15,6 +15,9 @@ export function Card({
         {title}
       </h1>
       <p>{children}</p>
+    
     </div>
   );
 }
+
+// al;sdfjlsdj
