@@ -9,6 +9,7 @@ COPY apps ./apps
 COPY packages ./packages
 
 
+
 RUN npm install
 
 RUN cd packages/db && npx prisma generate && cd ../..
