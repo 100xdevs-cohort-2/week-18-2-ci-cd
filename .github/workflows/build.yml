@@ -2,7 +2,7 @@ name : Build on PR
 
 on:
   pull_request:
-    brnaches:
+    branches:
       -master
 jobs: 
   build:
