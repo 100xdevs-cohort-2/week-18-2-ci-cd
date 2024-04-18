@@ -27,6 +27,5 @@ jobs:
         tags: sujin511-week-18-cicd:latest  # Replace with your Docker Hub username and repository
 
 
-
     - name: Verify Pushed Image
       run: docker pull sujin511-week-18-cicd:latest  # Replace with your Docker Hub username and repository
