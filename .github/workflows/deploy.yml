@@ -24,8 +24,8 @@ jobs:
         context: .
         file: ./docker/Dockerfile.user
         push: true
-        tags: sujin511-week-18-cicd:latest  # Replace with your Docker Hub username and repository
+        tags: sujin511/continuous-deployment:latest  # Replace with your Docker Hub username and repository
 
 
     - name: Verify Pushed Image
-      run: docker pull sujin511-week-18-cicd:latest  # Replace with your Docker Hub username and repository
+      run: docker pull sujin511/continuous-deployment:latest  # Replace with your Docker Hub username and repository
