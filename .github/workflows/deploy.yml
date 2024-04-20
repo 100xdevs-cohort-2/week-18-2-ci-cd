@@ -41,4 +41,3 @@ jobs:
           sudo docker stop web-app || true
           sudo docker rm web-app || true
           sudo docker run -d --name web-app -p 3005:3000 sujin511/continuous-deployment:latest
-C
