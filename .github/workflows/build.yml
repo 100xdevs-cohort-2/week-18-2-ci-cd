@@ -1,5 +1,4 @@
-name: Build on PR
-
+name: Build succeed on PR
 on:
   pull_request:
     branches:
