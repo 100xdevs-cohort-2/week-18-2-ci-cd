@@ -19,6 +19,10 @@ model User {
   receivedTransfers p2pTransfer[]       @relation(name: "ToUserRelation")
 }
 
+
+
+
+
 model Merchant {
   id        Int      @id @default(autoincrement())
   email     String   @unique
