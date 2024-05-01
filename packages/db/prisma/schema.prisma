@@ -51,6 +51,7 @@ model OnRampTransaction {
   user      User         @relation(fields: [userId], references: [id])
 }
 
+
 model Balance {
   id     Int  @id @default(autoincrement())
   userId Int  @unique
