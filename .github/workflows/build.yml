@@ -19,5 +19,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Adding DB
+        run: npm run db:generate
+
       - name: Build 
         run: npm run build
