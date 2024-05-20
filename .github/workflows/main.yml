@@ -1,0 +1,26 @@
+name: Build Succeeds on PR
+
+on:
+  pull_request:
+    branches: #array of branches
+      - master
+
+jobs:
+  build:
+    name: Build the project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 #clone repo
+      - name: Use NodeJS
+        uses: actions/setup-node@v3 #install nodejs
+        with:
+          node-version: '20' 
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Adding DB
+        run: npm run db:generate
+
+      - name: Build 
+        run: npm run build
