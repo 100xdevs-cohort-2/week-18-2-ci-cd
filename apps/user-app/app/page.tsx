@@ -6,7 +6,8 @@ export default async function Page() {
   const session = await getServerSession(authOptions);
   if (session?.user) {
     redirect('/dashboard')
-  } else {
+  } 
+  else {
     redirect('/api/auth/signin')
   }
 }
