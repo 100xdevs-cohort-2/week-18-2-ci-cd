@@ -41,5 +41,5 @@ jobs:
           script: |
             sudo docker pull devrokkies/testing_1:latest
             sudo docker stop testing_1 || true
-            sudo docker rm testing_1 || true
+            sudo docker rm testing_1 || true 
             sudo docker run -d --name testing_1 -p 3005:3000 devrokkies/testing_1:latest
