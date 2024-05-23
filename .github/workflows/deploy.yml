@@ -3,7 +3,7 @@ name: Build and Deploy to Docker Hub
 on:
   push:
     branches:
-      - master
+      - master # Adjusted to trigger on pushes to master
 
 jobs:
   build-and-push:
@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Check Out Repo
         uses: actions/checkout@v2
+
+      - name: Prepare Dockerfile
+        run: ./docker/Dockerfile.user
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -22,9 +25,21 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./docker/Dockerfile.user
+          file: ./Dockerfile
           push: true
-          tags: devrokkies/testing_1:latest # Replace with your Docker Hub username and repository
+          tags: 100xdevs/web-app:latest
 
       - name: Verify Pushed Image
-        run: docker pull devrokkies/testing_1:latest # Replace with your Docker Hub username and repository
+        run: docker pull 100xdevs/web-app:latest
+
+      - name: Deploy to Azure VM
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AZURE_SSH_HOST }}
+          username: ${{ secrets.AZURE_SSH_USERNAME }}
+          key: ${{ secrets.AZURE_SSH_KEY }}
+          script: |
+            sudo docker pull 100xdevs/web-app:latest
+            sudo docker stop web-app || true
+            sudo docker rm web-app || true
+            sudo docker run -d --name web-app -p 3005:3000 100xdevs/web-app:latest
