@@ -23,7 +23,12 @@ async function getOnRampTransactions() {
     const txns = await prisma.onRampTransaction.findMany({
         where: {
             userId: Number(session?.user?.id)
-        }
+        },
+        orderBy :{
+            startTime : 'desc'
+        },
+        take : 2
+
     });
     return txns.map(t => ({
         time: t.startTime,
@@ -38,7 +43,7 @@ export default async function() {
     const transactions = await getOnRampTransactions();
 
     return <div className="w-screen">
-        hi
+       
         <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold">
             Transfer
         </div>
