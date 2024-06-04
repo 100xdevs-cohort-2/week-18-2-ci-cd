@@ -8,6 +8,7 @@ export const GET = async () => {
         return NextResponse.json({
             user: session.user
         })
+    console.log("hi");
     }
     return NextResponse.json({
         message: "You are not logged in"
