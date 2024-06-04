@@ -1,8 +1,5 @@
 import { getServerSession } from "next-auth"
 import { NextResponse } from "next/server";
-
-
-
 import { authOptions } from "../../lib/auth";
 
 export const GET = async () => {
@@ -11,6 +8,7 @@ export const GET = async () => {
         return NextResponse.json({
             user: session.user
         })
+    console.log("hi");
     }
     return NextResponse.json({
         message: "You are not logged in"
