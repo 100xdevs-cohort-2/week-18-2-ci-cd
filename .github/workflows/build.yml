@@ -1,15 +1,15 @@
-name: Build on PR
-
+name: Linting and formatting on PR
 on:
   pull_request:
     branches:
       - '**'
 
 jobs:
-  build:
+  Continuous-Integration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -23,3 +23,6 @@ jobs:
         
       - name: Run Build
         run: npm run build
+      
+      - name: run cmd
+        run: npm run dev 
