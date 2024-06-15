@@ -1,25 +1,22 @@
-name: Build on PR
+name: "Pull request on PR"
 
 on:
-  pull_request:
-    branches:
-      - master
+  pull_request: 
+   branches:
+     - master
 
 jobs:
-  build:
+  build: 
+    name: build the project
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      
-      - name: Install Dependencies
-        run: npm install
-      
-      - name: Generate prisma client
-        run: npm run db:generate
-        
-      - name: Run Build
-        run: npm run build
+        - name: Check the repo
+          uses: actions/checkout@v3
+        - name: Use Nodejs
+          uses: actions/setup-node@v3
+          with:
+           node-version: "20"
+        - name: Install dependencies
+          uses: npm install -legacy-peer-deps
+        - name: Build the project
+          uses: npm run build
