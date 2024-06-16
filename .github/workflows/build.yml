@@ -4,7 +4,7 @@ name: Build on PR
 on :
     pull_request:
         branches:
-            - master
+            - new-main
 
 
 jobs:
