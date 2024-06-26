@@ -24,7 +24,7 @@ jobs:
         context: .
         file: ./docker/Dockerfile.user
         push: true
-        tags: 100xdevs/week-18-class:latest  # Replace with your Docker Hub username and repository
+        tags: 100xdevs/mynextapp:latest  # Replace with your Docker Hub username and repository
 
     - name: Verify Pushed Image
       run: docker pull 100xdevs/week-18-class:latest  # Replace with your Docker Hub username and repository
