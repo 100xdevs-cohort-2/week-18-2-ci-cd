@@ -1,5 +1,4 @@
-name: Build on PR
-
+name: Build on PR created by the pranav desai
 on:
   pull_request:
     branches:
