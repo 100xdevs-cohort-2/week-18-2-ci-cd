@@ -2,7 +2,8 @@ import express from "express";
 import db from "@repo/db/client";
 const app = express();
 
-console.log("I Rannnnnnnnnnnnnnnnnnnn");
+console.log("I Rannnnnnnnnnnnnnnnnnnn 1");
+console.log("I Rannnnnnnnnnnnnnnnnnnn 2");
 
 app.use(express.json());
 
