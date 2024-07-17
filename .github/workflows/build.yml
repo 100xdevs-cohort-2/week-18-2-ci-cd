@@ -1,4 +1,4 @@
-name: Build on PR
+name: Build on PR for Sibshahz
 
 on:
   pull_request:
