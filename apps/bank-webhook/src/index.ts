@@ -41,12 +41,12 @@ app.post("/hdfcWebhook", async (req, res) => {
         ]);
 
         res.json({
-            message: "Captured"
+            message: ""
         })
     } catch(e) {
         console.error(e);
         res.status(411).json({
-            message: "Error while processing webhook"
+            message: ""
         })
     }
 
