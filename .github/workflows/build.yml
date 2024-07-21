@@ -1,25 +1,25 @@
 name: Build on PR
 
-on:
-  pull_request:
-    branches:
+on
+  pull_request: #pull request came if in master branch then this will happend //other wise ci will not happening if me or someone else pullrequest to other branch
+    branches: #if you want to create more branch then you can below the master -main
       - master
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+jobs: #can be multiple job but here we just buiilding the job when some is pull request
+  build:  #here telling the name of job which you want
+    runs-on: ubuntu-latest  #in which machine you want to run the build
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js
+      - uses: actions/checkout@v3 # it is like clone of user who want to pull reques and what he changes
+      - name: Use Node.js  #node use
         uses: actions/setup-node@v3
         with:
           node-version: '20'
       
-      - name: Install Dependencies
-        run: npm install
+      - name: Install Dependencies #name of the work what you want 
+        run: npm install  #what you want to actualy run the command
       
       - name: Generate prisma client
         run: npm run db:generate
         
       - name: Run Build
-        run: npm run build
+        run: npm run build  #finally npm run build

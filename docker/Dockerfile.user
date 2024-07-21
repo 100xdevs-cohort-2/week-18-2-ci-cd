@@ -1,10 +1,16 @@
-FROM node:20.12.0-alpine3.19
+FROM node:20.12.0-alpine3.19 
+#it is version of node which light version of the node.js version
 
 WORKDIR /usr/src/app
 
+
+# turbo repo has his own package
 COPY package.json package-lock.json turbo.json tsconfig.json ./
 
+# apps has  his own package and others things 
 COPY apps ./apps
+
+#common has his own package.json and own file
 COPY packages ./packages
 
 # Install dependencies
@@ -15,4 +21,5 @@ RUN npm run db:generate
 # Can you filter the build down to just one app?
 RUN npm run build
 
+# "start-user-app" see in the main root level package.json where we define what will do for these run  
 CMD ["npm", "run", "start-user-app"]
