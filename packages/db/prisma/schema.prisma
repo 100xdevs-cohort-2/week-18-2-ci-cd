@@ -8,6 +8,7 @@ datasource db {
 }
 
 model User {
+  newId             Int
   id                Int                 @id @default(autoincrement())
   email             String?             @unique
   name              String?
