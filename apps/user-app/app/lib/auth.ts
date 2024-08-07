@@ -7,10 +7,9 @@ export const authOptions = {
       CredentialsProvider({
           name: 'Credentials',
           credentials: {
-            phone: { label: "Phone number", type: "text", placeholder: "1231231231", required: true },
-            password: { label: "Password", type: "password", required: true }
+              phone: { label: "Phonenumber", type: "text", placeholder: "2222222222", required: true },
+              password: { label: "Password", type: "password", required: true }
           },
-          // TODO: User credentials type from next-aut
           async authorize(credentials: any) {
             // Do zod validation, OTP validation here
             const hashedPassword = await bcrypt.hash(credentials.password, 10);
