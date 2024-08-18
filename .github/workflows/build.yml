@@ -1,12 +1,14 @@
-name: Build on PR
+name: Build succeeds on PR
 
 on:
   pull_request:
     branches:
       - master
+      - main
 
 jobs:
   build:
+    name: Build the project
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
