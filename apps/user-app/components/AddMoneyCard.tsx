@@ -9,10 +9,10 @@ import { createOnRampTransaction } from "../app/lib/actions/createOnRamptxn";
 
 const SUPPORTED_BANKS = [{
     name: "HDFC Bank",
-    redirectUrl: "https://netbanking.hdfcbank.com"
+    redirectUrl: "https://netbanking.hdfcbank.in"
 }, {
     name: "Axis Bank",
-    redirectUrl: "https://www.axisbank.com/"
+    redirectUrl: "https://www.axisbank.in/"
 }];
 
 export const AddMoney = () => {
