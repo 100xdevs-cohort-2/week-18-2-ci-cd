@@ -20,6 +20,9 @@ jobs:
       
       - name: Install Dependencies
         run: npm install
+      
+      - name: database generate
+        run: npm run db:generate
 
       - name: Run Build
         run: npm run build
