@@ -5,7 +5,7 @@ import { Providers } from "../provider";
 import { AppbarClient } from "../components/AppbarClient";
 
 const inter = Inter({ subsets: ["latin"] });
-
+//console
 export const metadata: Metadata = {
   title: "Wallet",
   description: "Simple wallet app",
