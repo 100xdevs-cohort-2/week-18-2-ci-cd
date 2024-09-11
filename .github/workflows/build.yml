@@ -2,7 +2,7 @@ name:Build Succeds on PR Raise
 on:
   pull_request:
     branches:
-      - *
+      - '**'
 jobs:
   build:
     name: Build on PR Raise
