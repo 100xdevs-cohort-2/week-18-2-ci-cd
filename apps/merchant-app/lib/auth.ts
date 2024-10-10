@@ -15,7 +15,7 @@ export const authOptions = {
           name: string
         },
         account: {
-          provider: "google" | "github"
+          provider: "google" | "github" | "linkedin"
         }
       }) {
         console.log("hi signin")
