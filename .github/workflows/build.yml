@@ -5,6 +5,7 @@ on:
     branches:
       - master
 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,7 +18,7 @@ jobs:
       
       - name: Install Dependencies
         run: npm install
-      
+
       - name: Generate prisma client
         run: npm run db:generate
         
