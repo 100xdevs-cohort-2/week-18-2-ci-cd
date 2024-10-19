@@ -1,9 +1,12 @@
-name: Build on PR
+name:  Build Succesds on PR   #give it any name
 
-on:
+#when should it run
+on: 
   pull_request:
     branches:
-      - master
+      -master  #if someone creates a pull request on master branch then only run this workflow
+      -main    #can add any number of barnchs
+
 
 jobs:
   build:
@@ -14,12 +17,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-      
+          
       - name: Install Dependencies
         run: npm install
-      
-      - name: Generate prisma client
-        run: npm run db:generate
         
       - name: Run Build
         run: npm run build
