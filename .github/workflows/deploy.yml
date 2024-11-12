@@ -24,10 +24,10 @@ jobs:
         context: .
         file: ./docker/Dockerfile.user
         push: true
-        tags: 100xdevs/week-18-class:latest  # Replace with your Docker Hub username and repository
+        tags: ajithteja/week-18-class:latest  # Replace with your Docker Hub username and repository
 
     - name: Verify Pushed Image
-      run: docker pull 100xdevs/week-18-class:latest  # Replace with your Docker Hub username and repository
+      run: docker pull ajithteja/week-18-class:latest  # Replace with your Docker Hub username and repository
 
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
@@ -36,7 +36,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          sudo docker pull 100xdevs/week-18-class:latest
+          sudo docker pull ajithteja/week-18-class:latest
           sudo docker stop web-app || true
           sudo docker rm web-app || true
-          sudo docker run -d --name web-app -p 3005:3000 100xdevs/week-18-class:latest
+          sudo docker run -d --name web-app -p 3005:3000 ajithteja/week-18-class:latest
