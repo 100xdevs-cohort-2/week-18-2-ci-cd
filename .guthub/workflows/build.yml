@@ -1,0 +1,22 @@
+name: Linting and formating on PR
+on:
+  pull_requets:
+    branches:
+      - master
+
+jobs:
+  Continuous-Integration:
+    name: Performs linting, formatting on the application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Generate Prisam Client
+        run: npm run db:generate
+
+      - name: Run Build Script
+        run: npm run build
