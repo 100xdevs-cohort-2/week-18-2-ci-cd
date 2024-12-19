@@ -1,4 +1,4 @@
-name: Build on PR
+name: Testing CI For Deployment
 
 on:
   pull_request:
