@@ -1,13 +1,13 @@
-name: Build Succeed on PR
+name: Build on PR
 
 on:
-  pullrequest:
-    branches: -master
+  pull_request:
+    branches:
+      - master
 
-job:
+jobs:
   build:
-    name: Build the project
-    run: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
