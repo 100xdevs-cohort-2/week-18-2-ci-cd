@@ -13,5 +13,5 @@ export const GET = async () => {
         message: "You are not logged in"
     }, {
         status: 403
-    })
+    }) 
 }
