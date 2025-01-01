@@ -18,3 +18,15 @@ docker run  -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
     - npx prisma db seed
 - Go to `apps/user-app` , run `npm run dev`
 - Try logging in using phone - 1111111111 , password - alice (See `seed.ts`)
+
+
+- Go to `apps/merchant-app` , run `npm run dev`
+- Go to `apps/bank-webhook` , run `npm run dev`
+- Go to `apps/bank-webhook` , run `npm run start`
+- Go to `apps/user-app` , try linking a bank account
+- Go to `apps/merchant-app` , try creating a payment request
+- Go to `apps/merchant-app` , try sending a payment request to a user
+- Go to `apps/user-app` , try making a payment
+- Go to `apps/merchant-app` , try receiving a payment
+- Go to `apps/merchant-app` , try making a payment to a user
+- Go to `apps/user-app` , try receiving a payment
