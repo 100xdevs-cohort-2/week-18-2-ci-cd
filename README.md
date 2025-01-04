@@ -1,20 +1,36 @@
-- Clone the repo
+# week-18
 
-```jsx
-git clone https://github.com/100xdevs-cohort-2/week-17-final-code
-```
+This is a simple monorepo built with [Turborepo](https://turborepo.org).
 
-- npm install
-- Run postgres either locally or on the cloud (neon.tech)
+## Apps
 
-```jsx
-docker run  -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
-```
+- [user-app](apps/user-app): a simple wallet app
+- [merchant-app](apps/merchant-app): a simple merchant app
+- [bank-webhook](apps/bank-webhook): a simple webhook for bank transactions
 
-- Copy over all .env.example files to .env
-- Update .env files everywhere with the right db url
-- Go to `packages/db`
-    - npx prisma migrate dev
-    - npx prisma db seed
-- Go to `apps/user-app` , run `npm run dev`
-- Try logging in using phone - 1111111111 , password - alice (See `seed.ts`)
+## Packages
+
+- [ui](packages/ui): a simple component library
+- [store](packages/store): a simple state management library
+- [db](packages/db): a simple database library
+
+## Development
+
+- `yarn dev`: starts all apps and packages in development mode
+- `yarn build`: builds all apps and packages
+- `yarn lint`: lints all apps and packages
+- `yarn format`: formats all apps and packages
+
+## Deployment
+
+- `yarn deploy`: deploys all apps and packages to production
+
+## Learn more
+
+- [Turborepo documentation](https://turborepo.org/docs)
+- [Next.js documentation](https://nextjs.org/docs)
+- [Recoil documentation](https://recoiljs.org/docs/introduction/installation)
+
+## for education only
+
+lets learn
