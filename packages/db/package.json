@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "dependencies": {
         "@prisma/client": "^5.11.0",
+        "@repo/db": "file:",
         "bcrypt": "^5.1.1"
     },
     "devDependencies": {
