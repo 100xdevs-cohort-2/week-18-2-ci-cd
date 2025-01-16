@@ -5,6 +5,28 @@ import { OnRampTransactions } from "../../../components/OnRampTransactions";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 
+// Define types for the balance and transaction
+interface Balance {
+    amount: number;
+    locked: number;
+}
+
+interface OnRampTransaction {
+    time: Date;
+    amount: number;
+    status: string;
+    provider: string;
+}
+
+
+// Define the type for the raw transaction data from Prisma
+interface RawOnRampTransaction {
+    startTime: Date;
+    amount: number;
+    status: string;
+    provider: string;
+}
+
 async function getBalance() {
     const session = await getServerSession(authOptions);
     const balance = await prisma.balance.findFirst({
@@ -20,12 +42,12 @@ async function getBalance() {
 
 async function getOnRampTransactions() {
     const session = await getServerSession(authOptions);
-    const txns = await prisma.onRampTransaction.findMany({
+    const txns: RawOnRampTransaction[] = await prisma.onRampTransaction.findMany({
         where: {
             userId: Number(session?.user?.id)
         }
     });
-    return txns.map(t => ({
+    return txns.map((t): OnRampTransaction => ({
         time: t.startTime,
         amount: t.amount,
         status: t.status,
