@@ -54,5 +54,6 @@
 
   ```
 
-- Push this to master branch
+- Push this to master branch - `git push origin HEAD`
 
+- Create a new branch and add some minimal changes and create a PR from it
