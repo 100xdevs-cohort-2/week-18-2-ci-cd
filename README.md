@@ -1,20 +1,59 @@
-- Clone the repo
+# CI/CD
 
-```jsx
-git clone https://github.com/100xdevs-cohort-2/week-17-final-code
-```
+- Fork - `https://github.com/100xdevs-cohort-2/week-18-2-ci-cd`
 
-- npm install
-- Run postgres either locally or on the cloud (neon.tech)
+- Then clone the forked repo
 
-```jsx
-docker run  -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
-```
+  ```
+  git clone https://github.com/ajaydewangan1100/week-18-2-ci-cd.git
+  ```
 
-- Copy over all .env.example files to .env
-- Update .env files everywhere with the right db url
+- `npm install`
+
 - Go to `packages/db`
-    - npx prisma migrate dev
-    - npx prisma db seed
-- Go to `apps/user-app` , run `npm run dev`
-- Try logging in using phone - 1111111111 , password - alice (See `seed.ts`)
+
+  - `npx prisma generate`
+
+- `npm run build`
+
+## Steps -
+
+- adding a build pipeline for our repo -
+
+  (Anytime a user creates a PR, we need to run npm run build and only if it succeeds should the workflow succeed)
+
+  Add `.github/workflows/build.yml` in the root folder
+
+  ```
+    name: Build Success on PR
+
+    on:
+    pull request:
+        branches:
+        - master
+        # - main
+
+    jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - name: Use node.js
+            uses: actions/setup-node@v3
+            with:
+            node-version: "20"
+
+        - name: Install Dependencies
+            run: npm install
+
+        # - name: Generate prisma client
+        #   run: cd packages/db && npx prisma generate && cd ../..
+
+        - name: Build the project
+            run: npm run build
+
+  ```
+
+- Push this to master branch - `git push origin HEAD`
+
+- Create a new branch and add some minimal changes and create a PR from it
