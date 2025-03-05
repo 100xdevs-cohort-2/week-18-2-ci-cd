@@ -10,11 +10,14 @@ jobs:
     steps:
       - name: clone code
         uses: actions/checkout@v4
+        
       - name: Install node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+
       - name: Install dependencis
         uses: npm install
+
       - name: Run Build
         uses: npm run build
