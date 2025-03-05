@@ -16,5 +16,7 @@ jobs:
           node-version: "20"
       - name: Install dependencis
         uses: npm install
+      - name: Generate the client
+        uses: npm run db:generate
       - name: Run Build
         uses: npm run build
