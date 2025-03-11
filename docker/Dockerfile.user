@@ -1,18 +1,15 @@
-FROM node:20.12.0-alpine3.19
+FROM node:20-alpine3.19
 
 WORKDIR /usr/src/app
 
-COPY package.json package-lock.json turbo.json tsconfig.json ./
+COPY package.json package-lock.json tsconfig.json turbo.json ./
 
-COPY apps ./apps
-COPY packages ./packages
+# we are first copying this over to /app becuase this is a monorepo and each of the folder has its own package.json
+COPY ./apps ./apps  
+COPY ./packages ./packages
 
-# Install dependencies
 RUN npm install
-# Can you add a script to the global package.json that does this?
-RUN npm run db:generate
-
-# Can you filter the build down to just one app?
+# RUN cd packages/db && npx prisma generate && cd ../..  (ideally i should've done this but since i already added a script which does this so no need to do that)
+RUN npm run db:generate 
 RUN npm run build
-
-CMD ["npm", "run", "start-user-app"]
+CMD [ "npm", "run", "start-user-app" ]
