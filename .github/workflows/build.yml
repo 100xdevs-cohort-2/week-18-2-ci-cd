@@ -1,5 +1,5 @@
 name: Build on PR
-
+# This workflow uses actions that are not known to work on dependencies, so we recommend disabling them.
 on:
   pull_request:
     branches:
