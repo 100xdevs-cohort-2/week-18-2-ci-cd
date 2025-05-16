@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClienll } from '@prisma/client'
 
 const prismaClientSingleton = () => {
-  return new PrismaClient()
+  return new PrismaClient()lalala
 }
 
 declare global {
@@ -13,3 +13,5 @@ const prisma: ReturnType<typeof prismaClientSingleton> = globalThis.prismaGlobal
 export default prisma
 
 if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma
+
+console.log("CHANGES");
