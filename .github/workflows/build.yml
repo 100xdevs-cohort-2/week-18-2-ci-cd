@@ -3,12 +3,10 @@ name: Build on PR
 on:
   pull_request:
     branches:
-      - old-version-fork
-      - main
+      - master
 
 jobs:
   build:
-    name: build the project
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
