@@ -7,6 +7,7 @@ COPY package.json package-lock.json turbo.json tsconfig.json ./
 COPY apps ./apps
 COPY packages ./packages
 
+
 # Install dependencies
 RUN npm install
 # Can you add a script to the global package.json that does this?
