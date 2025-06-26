@@ -25,7 +25,28 @@ async function getOnRampTransactions() {
             userId: Number(session?.user?.id)
         }
     });
-    return txns.map(t => ({
+    interface OnRampTransaction {
+        time: Date;
+        amount: number;
+        status: string;
+        provider: string;
+    }
+
+    interface PrismaOnRampTransaction {
+        startTime: Date;
+        amount: number;
+        status: string;
+        provider: string;
+    }
+
+    interface OnRampTransaction {
+        time: Date;
+        amount: number;
+        status: string;
+        provider: string;
+    }
+
+    return txns.map((t: PrismaOnRampTransaction): OnRampTransaction => ({
         time: t.startTime,
         amount: t.amount,
         status: t.status,
