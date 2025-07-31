@@ -24,10 +24,10 @@ jobs:
         context: .
         file: ./docker/Dockerfile.user
         push: true
-        tags: 100xdevs/week-18-class:latest  # Replace with your Docker Hub username and repository
+        tags: waqarahmed0101/understandingcicd:latest  # Replace with your Docker Hub username and repository
 
     - name: Verify Pushed Image
-      run: docker pull 100xdevs/week-18-class:latest  # Replace with your Docker Hub username and repository
+      run: docker pull waqarahmed0101/understandingcicd:latest  # Replace with your Docker Hub username and repository
 
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
@@ -40,3 +40,7 @@ jobs:
           sudo docker stop web-app || true
           sudo docker rm web-app || true
           sudo docker run -d --name web-app -p 3005:3000 100xdevs/week-18-class:latest
+
+
+
+
