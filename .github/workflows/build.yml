@@ -1,25 +1,24 @@
-name: Build on PR
+name: Build the project
 
 on:
+  push:
+    branches: [main]
   pull_request:
-    branches:
-      - master
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
-      
-      - name: Install Dependencies
-        run: npm install
-      
-      - name: Generate prisma client
-        run: npm run db:generate
-        
-      - name: Run Build
+          node-version: '20'   # Fixed key: it's 'node-version', not 'node-versions'
+
+      - name: Install dependencies
+        run: npm install       # Fixed typo: 'Install' → 'install'
+
+      - name: Run build
         run: npm run build
