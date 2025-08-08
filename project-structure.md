@@ -1,0 +1,444 @@
+# Workspace Structure
+
+Files listed in .gitignore will be excluded.
+
+## Project Info
+- Name: week-18
+- Version: undefined
+- Description: No description provided
+
+## Configuration Files
+
+### package.json
+```
+{
+  "name": "week-18",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:generate": "cd packages/db && npx prisma generate && cd ../..",
+    "start-user-app": "cd ./apps/user-app && npm run start"
+
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "prettier": "^3.2.5",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@10.2.4",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
+
+```
+
+## File Structure
+
+- 📄 .eslintrc.js
+- 📁 .github/
+  - 📁 workflows/
+    - 📄 build.yml
+    - 📄 deploy.yml
+- 📄 .gitignore
+- 📄 .npmrc
+- 📄 README.md
+- 📁 apps/
+  - 📁 bank-webhook/
+    - 📄 package.json
+    - 📁 src/
+      - 📄 index.ts
+        - Imports:
+          - import express from "express"
+          - import db from "@repo/db/client"
+    - 📄 tsconfig.json
+  - 📁 merchant-app/
+    - 📄 .eslintrc.js
+    - 📄 README.md
+    - 📁 app/
+      - 📁 api/
+        - 📁 auth/
+          - 📁 [...nextauth]/
+            - 📄 route.ts
+              - Imports:
+                - import NextAuth from "next-auth"
+                - import { authOptions } from "../../../../lib/auth"
+      - 📄 favicon.ico
+      - 📄 globals.css
+      - 📄 layout.tsx
+        - Imports:
+          - import { Inter } from "next/font/google"
+          - import { Providers } from "../provider"
+        - Exports:
+          - metadata
+        - Functions:
+          - RootLayout
+      - 📄 page.module.css
+      - 📄 page.tsx
+        - Imports:
+          - import { useBalance } from "@repo/store/balance"
+        - Methods:
+          - function
+    - 📁 lib/
+      - 📄 auth.ts
+        - Imports:
+          - import GoogleProvider from "next-auth/providers/google"
+          - import db from "@repo/db/client"
+        - Exports:
+          - authOptions
+    - 📄 next-env.d.ts
+    - 📄 next.config.js
+    - 📄 package.json
+    - 📄 postcss.config.js
+    - 📄 provider.tsx
+      - Imports:
+        - import { RecoilRoot } from "recoil"
+        - import { SessionProvider } from "next-auth/react"
+      - Exports:
+        - Providers
+      - Functions:
+        - Providers
+      - Components:
+        - Providers
+    - 📁 public/
+      - 📄 circles.svg
+      - 📄 next.svg
+      - 📄 turborepo.svg
+      - 📄 vercel.svg
+    - 📄 tailwind.config.js
+    - 📄 tsconfig.json
+  - 📁 user-app/
+    - 📄 .env.example
+    - 📄 .eslintrc.js
+    - 📄 README.md
+    - 📁 app/
+      - 📁 (dashboard)/
+        - 📁 dashboard/
+          - 📄 page.tsx
+            - Methods:
+              - function
+        - 📄 layout.tsx
+          - Imports:
+            - import { SidebarItem } from "../../components/SidebarItem"
+          - Functions:
+            - Layout
+            - HomeIcon
+            - P2PTransferIcon
+            - TransferIcon
+            - TransactionsIcon
+        - 📁 p2p/
+          - 📄 page.tsx
+            - Imports:
+              - import { SendCard } from "../../../components/SendCard"
+            - Methods:
+              - function
+        - 📁 transactions/
+          - 📄 page.tsx
+            - Methods:
+              - function
+        - 📁 transfer/
+          - 📄 page.tsx
+            - Imports:
+              - import prisma from "@repo/db/client"
+              - import { AddMoney } from "../../../components/AddMoneyCard"
+              - import { BalanceCard } from "../../../components/BalanceCard"
+              - import { OnRampTransactions } from "../../../components/OnRampTransactions"
+              - import { getServerSession } from "next-auth"
+              - import { authOptions } from "../../lib/auth"
+            - Functions:
+              - getBalance
+              - getOnRampTransactions
+            - Methods:
+              - function
+      - 📁 api/
+        - 📁 auth/
+          - 📁 [...nextauth]/
+            - 📄 route.ts
+              - Imports:
+                - import NextAuth from "next-auth"
+                - import { authOptions } from "../../../lib/auth"
+        - 📁 user/
+          - 📄 route.ts
+            - Imports:
+              - import { getServerSession } from "next-auth"
+              - import { NextResponse } from "next/server"
+              - import { authOptions } from "../../lib/auth"
+            - Exports:
+              - GET
+            - Functions:
+              - GET
+      - 📄 favicon.ico
+      - 📄 globals.css
+      - 📄 layout.tsx
+        - Imports:
+          - import { Inter } from "next/font/google"
+          - import { Providers } from "../provider"
+          - import { AppbarClient } from "../components/AppbarClient"
+        - Exports:
+          - metadata
+        - Functions:
+          - RootLayout
+      - 📁 lib/
+        - 📁 actions/
+          - 📄 createOnRamptxn.ts
+            - Imports:
+              - import { getServerSession } from "next-auth"
+              - import { authOptions } from "../auth"
+              - import prisma from "@repo/db/client"
+            - Functions:
+              - createOnRampTransaction
+          - 📄 p2pTransfer.ts
+            - Imports:
+              - import { getServerSession } from "next-auth"
+              - import { authOptions } from "../auth"
+              - import prisma from "@repo/db/client"
+            - Functions:
+              - p2pTransfer
+        - 📄 auth.ts
+          - Imports:
+            - import db from "@repo/db/client"
+            - import CredentialsProvider from "next-auth/providers/credentials"
+            - import bcrypt from "bcrypt"
+          - Exports:
+            - authOptions
+          - Methods:
+            - session
+      - 📄 page.module.css
+      - 📄 page.tsx
+        - Imports:
+          - import { getServerSession } from "next-auth"
+          - import { redirect } from 'next/navigation'
+          - import { authOptions } from "./lib/auth"
+        - Functions:
+          - Page
+    - 📁 components/
+      - 📄 AddMoneyCard.tsx
+        - Imports:
+          - import { Button } from "@repo/ui/button"
+          - import { Card } from "@repo/ui/card"
+          - import { Center } from "@repo/ui/center"
+          - import { Select } from "@repo/ui/select"
+          - import { useState } from "react"
+          - import { TextInput } from "@repo/ui/textinput"
+          - import { createOnRampTransaction } from "../app/lib/actions/createOnRamptxn"
+        - Exports:
+          - AddMoney
+        - Functions:
+          - AddMoney
+        - Components:
+          - AddMoney
+      - 📄 AppbarClient.tsx
+        - Imports:
+          - import { signIn, signOut, useSession } from "next-auth/react"
+          - import { Appbar } from "@repo/ui/appbar"
+          - import { useRouter } from "next/navigation"
+        - Exports:
+          - AppbarClient
+        - Functions:
+          - AppbarClient
+      - 📄 BalanceCard.tsx
+        - Imports:
+          - import { Card } from "@repo/ui/card"
+        - Exports:
+          - BalanceCard
+        - Functions:
+          - BalanceCard
+        - Components:
+          - BalanceCard
+      - 📄 OnRampTransactions.tsx
+        - Imports:
+          - import { Card } from "@repo/ui/card"
+        - Exports:
+          - OnRampTransactions
+        - Functions:
+          - OnRampTransactions
+        - Components:
+          - OnRampTransactions
+      - 📄 SendCard.tsx
+        - Imports:
+          - import { Button } from "@repo/ui/button"
+          - import { Card } from "@repo/ui/card"
+          - import { Center } from "@repo/ui/center"
+          - import { TextInput } from "@repo/ui/textinput"
+          - import { useState } from "react"
+          - import { p2pTransfer } from "../app/lib/actions/p2pTransfer"
+        - Exports:
+          - SendCard
+        - Functions:
+          - SendCard
+      - 📄 SidebarItem.tsx
+        - Imports:
+          - import { usePathname, useRouter } from "next/navigation"
+          - import React from "react"
+        - Exports:
+          - SidebarItem
+        - Functions:
+          - SidebarItem
+        - Components:
+          - SidebarItem
+    - 📄 next-env.d.ts
+    - 📄 next.config.js
+    - 📄 package.json
+    - 📄 postcss.config.js
+    - 📄 provider.tsx
+      - Imports:
+        - import { RecoilRoot } from "recoil"
+        - import { SessionProvider } from "next-auth/react"
+      - Exports:
+        - Providers
+      - Functions:
+        - Providers
+      - Components:
+        - Providers
+    - 📁 public/
+      - 📄 circles.svg
+      - 📄 next.svg
+      - 📄 turborepo.svg
+      - 📄 vercel.svg
+    - 📄 tailwind.config.js
+    - 📄 tsconfig.json
+- 📁 docker/
+  - 📄 Dockerfile.user
+- 📄 package-lock.json
+- 📄 package.json
+- 📁 packages/
+  - 📁 db/
+    - 📄 .env.example
+    - 📄 .gitignore
+    - 📄 index.ts
+      - Imports:
+        - import { PrismaClient } from '@prisma/client'
+      - Functions:
+        - prismaClientSingleton
+    - 📄 package.json
+    - 📁 prisma/
+      - 📁 migrations/
+        - 📁 20240323121305_init/
+          - 📄 migration.sql
+        - 📁 20240324100733_add_merchant/
+          - 📄 migration.sql
+        - 📁 20240324104524_add_merchant/
+          - 📄 migration.sql
+        - 📁 20240324105137_add_password/
+          - 📄 migration.sql
+        - 📁 20240324145646_added_balances_and_onramp/
+          - 📄 migration.sql
+        - 📁 20240330154923_adds_p2p_transfer/
+          - 📄 migration.sql
+        - 📄 migration_lock.toml
+      - 📄 schema.prisma
+      - 📄 seed.ts
+        - Imports:
+          - import { PrismaClient } from '@prisma/client'
+          - import bcrypt from "bcrypt"
+        - Functions:
+          - main
+        - Methods:
+          - main
+    - 📄 tsconfig.json
+  - 📁 eslint-config/
+    - 📄 README.md
+    - 📄 library.js
+    - 📄 next.js
+    - 📄 package.json
+    - 📄 react-internal.js
+  - 📁 store/
+    - 📄 package.json
+    - 📁 src/
+      - 📁 atoms/
+        - 📄 balance.ts
+          - Imports:
+            - import { atom } from "recoil"
+          - Exports:
+            - balanceAtom
+      - 📁 hooks/
+        - 📄 useBalance.ts
+          - Imports:
+            - import { useRecoilValue } from "recoil"
+            - import { balanceAtom } from "../atoms/balance"
+          - Exports:
+            - useBalance
+          - Functions:
+            - useBalance
+    - 📄 tsconfig.json
+  - 📁 typescript-config/
+    - 📄 base.json
+    - 📄 nextjs.json
+    - 📄 package.json
+    - 📄 react-library.json
+  - 📁 ui/
+    - 📄 .eslintrc.js
+    - 📄 package.json
+    - 📁 src/
+      - 📄 Appbar.tsx
+        - Imports:
+          - import { Button } from "./button"
+        - Exports:
+          - Appbar
+        - Functions:
+          - Appbar
+        - Components:
+          - Appbar
+      - 📄 Center.tsx
+        - Imports:
+          - import React from "react"
+        - Exports:
+          - Center
+        - Functions:
+          - Center
+        - Components:
+          - Center
+      - 📄 Select.tsx
+        - Exports:
+          - Select
+        - Functions:
+          - Select
+        - Components:
+          - Select
+      - 📄 TextInput.tsx
+        - Exports:
+          - TextInput
+        - Functions:
+          - TextInput
+        - Components:
+          - TextInput
+      - 📄 button.tsx
+        - Imports:
+          - import { ReactNode } from "react"
+        - Exports:
+          - Button
+        - Functions:
+          - Button
+        - Components:
+          - Button
+      - 📄 card.tsx
+        - Imports:
+          - import React from "react"
+        - Exports:
+          - Card
+        - Functions:
+          - Card
+      - 📄 code.tsx
+        - Exports:
+          - Code
+        - Functions:
+          - Code
+    - 📄 tsconfig.json
+    - 📄 tsconfig.lint.json
+    - 📁 turbo/
+      - 📁 generators/
+        - 📄 config.ts
+          - Functions:
+            - generator
+        - 📁 templates/
+          - 📄 component.hbs
+- 📄 tsconfig.json
+- 📄 turbo.json
