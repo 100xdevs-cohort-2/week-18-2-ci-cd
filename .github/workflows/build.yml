@@ -1,4 +1,4 @@
-name: Build on PR
+name: Pipeline to build on PR
 
 on:
   pull_request:
@@ -8,18 +8,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
+
       - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      
-      - name: Install Dependencies
+        run: echo "Hello, world!"
+
+      - name: Install dependencies
         run: npm install
-      
-      - name: Generate prisma client
+
+      - name: Print working directory
+        run: pwd
+
+      - name: List all the files
+        run: ls -R packages/db/prisma
+
+      - name: Generate Prisma Client
         run: npm run db:generate
-        
+
       - name: Run Build
         run: npm run build
