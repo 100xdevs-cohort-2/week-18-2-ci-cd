@@ -1,14 +1,17 @@
-name: Build on PR
+name: Build Success on PR
 
-on:
+on :
   pull_request:
     branches:
-      - master
+       - master
+
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
+     name: Build the project
+     runs-on: ubuntu-latest
+
+     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
@@ -23,3 +26,5 @@ jobs:
         
       - name: Run Build
         run: npm run build
+
+
