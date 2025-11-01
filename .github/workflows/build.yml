@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: Generate Prisma Client
-        run:npm prisma generate
-        
+        run: cd packages/db && npm prisma generate
+
       - name: Run Build
         run: npm run build
