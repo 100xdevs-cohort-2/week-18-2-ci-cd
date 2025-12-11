@@ -15,6 +15,6 @@
     "@repo/db": "*",
     "@types/express": "^4.17.21",
     "esbuild": "^0.20.2",
-    "express": "^4.19.1"
+    "express": "^4.22.1"
   }
 }
