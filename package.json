@@ -10,7 +10,8 @@
     "start-user-app": "cd ./apps/user-app && npm run start"
 
   },
-  "devDependencies": {
+         
+  "devDependencies": { 
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "prettier": "^3.2.5",
