@@ -1,0 +1,29 @@
+name: Build Suceeds on PR
+on:
+ pull_request:
+  branches:
+   - master
+
+jobs:
+ build:
+  name: Build theprojewcte
+  run-on: ubuntu-latest
+  steps:
+   - users: actions/checkout@v3
+   - name: Use Node.js 
+     users: actions/setup-node@v3
+     with:
+      node-version: '20'
+
+   - name: Install Dependencies
+     run: npm install
+
+   - name: Generate prima client
+     rub: cd db/packages && npx prisma generate &&
+     cd ../..
+	 
+
+
+   - name: Run Build 
+     run: npm run build
+ 
