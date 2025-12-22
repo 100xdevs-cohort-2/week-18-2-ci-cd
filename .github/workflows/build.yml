@@ -19,10 +19,8 @@ jobs:
      run: npm install
 
    - name: Generate prima client
-     rub: cd db/packages && npx prisma generate &&
-     cd ../..
-	 
-
+     run: db:generate
+     
 
    - name: Run Build 
      run: npm run build
