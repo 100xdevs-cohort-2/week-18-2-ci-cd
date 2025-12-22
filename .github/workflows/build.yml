@@ -1,27 +1,29 @@
-name: Build Suceeds on PR
+name: Build Succeeds on PR
+
 on:
- pull_request:
-  branches:
-   - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
- build:
-  name: Build theprojewcte
-  run-on: ubuntu-latest
-  steps:
-   - users: actions/checkout@v3
-   - name: Use Node.js 
-     users: actions/setup-node@v3
-     with:
-      node-version: '20'
+  build:
+    name: Build the project
+    runs-on: ubuntu-latest
 
-   - name: Install Dependencies
-     run: npm install
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-   - name: Generate prima client
-     run: db:generate
-     
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
 
-   - name: Run Build 
-     run: npm run build
- 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Run build
+        run: npm run build
