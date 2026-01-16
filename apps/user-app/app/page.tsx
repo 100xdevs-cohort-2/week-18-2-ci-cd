@@ -1,5 +1,3 @@
-// comment branch2
-// comment2 branch2
 import { getServerSession } from "next-auth";
 import { redirect } from 'next/navigation'
 import { authOptions } from "./lib/auth";
