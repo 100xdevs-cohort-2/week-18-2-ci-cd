@@ -1,0 +1,7 @@
+node_modules
+.git
+.turbo
+.next
+dist
+coverage
+.env
